@@ -53,7 +53,7 @@ Step 2 - ask the AI to identify problems in generated data
 Step 3 - ask the AI to repair the data
 Step 4 - ask the AI to again identify problems in generated data
 
-USAGE: t7 [<options>] <pumpsys> <pumpusr>
+USAGE: t9 [<options>] <pumpsys> <pumpusr>
 
 ARGUMENTS:
   <pumpsys>               pumper system template URL
@@ -70,15 +70,18 @@ OPTIONS:
   --revalusr <revalusr>   re-validation user template URL, default is ""
   --altpump <altpump>     alternate pumper input URL, default is ""
   --pumpedfile <pumpedfile>
-                          pumpedoutput json stream file
+                          pumpedoutput directory of json files
   --repairedfile <repairedfile>
-                          repaired json stream file
+                          repaired directory of json files
   --validatedfile <validatedfile>
                           validated json stream file
   --revalidatedfile <revalidatedfile>
                           revalidated json stream file
   --model <model>         model (default: gpt-4)
   --verbose               verbose
+  --looper                keep looping thru pumpusr
+  --timeout <timeout>     AI timeout in seconds (default: 120)
+  --maxtokens <maxtokens> AI Max TOKENS (default: 4000)
   --version               Show the version.
   -h, --help              Show help information.
   ```

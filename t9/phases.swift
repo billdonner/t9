@@ -158,6 +158,8 @@ enum Phases:Int {
     try await callOpenAI(APIKey: apiKey,
                          decoder: decoder,
                          model: gmodel,
+                         timeout:gtimeout,
+                         maxtokens:gmaxtokens,
                          systemMessage:  msg1,
                          userMessage: msg2)
   }

@@ -84,7 +84,9 @@ var phasescount = 4
 
 var totalPumped = 0
 var totalRepaired = 0
-
+var glooper = false
+var gtimeout:TimeInterval = 0
+var gmaxtokens = 0
 
 func showTemplates() {
   print("+========T E M P L A T E S =========+")
@@ -127,28 +129,34 @@ func bigLoop () {
     }
   }
 }
+
+
+
 //main starts here
 //test1()
 let startTime = Date()
 print(">T9 Command Line: \(CommandLine.arguments)")
-
-T9.main()
-// big Loop runs async calls
-bigLoop()
-// wait for all phases to finish
-var j = 0
-var even = true
-while phasescount > 0  {
-  sleep(1)
-  j += 1
-  if j % 10 == 0  {
-    print(even ? "|" : "-",terminator:"")
-    even = !even
+repeat {
+  T9.main()
+  // big Loop runs async calls
+  bigLoop()
+  // wait for all phases to finish
+  var j = 0
+  var even = true
+  while phasescount > 0  {
+    sleep(1)
+    j += 1
+    if j % 10 == 0  {
+      print(even ? "|" : "-",terminator:"")
+      even = !even
+    }
   }
-}
-
-if let validatedHandle = validatedHandle { validatedHandle.closeFile()}
-if let revalidatedHandle = revalidatedHandle { revalidatedHandle.closeFile()}
+  
+  if let validatedHandle = validatedHandle { validatedHandle.closeFile()}
+  if let revalidatedHandle = revalidatedHandle { revalidatedHandle.closeFile()}
+} while glooper
+          
+          
 let elapsed = String(format:"%4.2f",Date().timeIntervalSince(startTime))
 print("\nExiting, pumped \(totalPumped) and repaired \(totalRepaired) using \(gmodel); all work completed to the best of our abilities in \(elapsed) secs.")
 

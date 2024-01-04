@@ -80,10 +80,18 @@ struct T9: ParsableCommand   {
   
   @Flag (help:"verbose")
   var verbose : Bool = false 
+  
+  @Flag (help:"keep looping thru pumpusr")
+  var looper = false
+  
+  @Option(help:"AI timeout in seconds")
+  var timeout = 120
+  @Option(help:"AI Max TOKENS")
+  var maxtokens = 4000
 
   mutating func process_cli() throws {
     // move some of these struct local things for argument parser into global variables!!
-    
+    glooper = looper 
     gpumptemplate = pumpedfile
     grepairtemplate = repairedfile
     gverbose = verbose
@@ -122,7 +130,6 @@ struct T9: ParsableCommand   {
         throw T9Errors.badInputURL(url: valsys)
       }
       valsysMessage = try String(data:Data(contentsOf:valsys),encoding: .utf8) ?? ""
-      
       skipvalidation = false
     }
     

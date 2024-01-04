@@ -11,6 +11,8 @@
 		88570DD72B47189F00428C14 /* phases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88570DD62B47189F00428C14 /* phases.swift */; };
 		88570DD92B4718A600428C14 /* aiconn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88570DD82B4718A600428C14 /* aiconn.swift */; };
 		88570DDB2B4718AB00428C14 /* t9parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88570DDA2B4718AB00428C14 /* t9parsing.swift */; };
+		88570DDF2B47194900428C14 /* q20kshare in Frameworks */ = {isa = PBXBuildFile; productRef = 88570DDE2B47194900428C14 /* q20kshare */; };
+		88570DE22B47196600428C14 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 88570DE12B47196600428C14 /* ArgumentParser */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -39,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88570DE22B47196600428C14 /* ArgumentParser in Frameworks */,
+				88570DDF2B47194900428C14 /* q20kshare in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +93,10 @@
 			dependencies = (
 			);
 			name = t9;
+			packageProductDependencies = (
+				88570DDE2B47194900428C14 /* q20kshare */,
+				88570DE12B47196600428C14 /* ArgumentParser */,
+			);
 			productName = t9;
 			productReference = 88570DCA2B47185600428C14 /* t9 */;
 			productType = "com.apple.product-type.tool";
@@ -117,6 +125,10 @@
 				Base,
 			);
 			mainGroup = 88570DC12B47185600428C14;
+			packageReferences = (
+				88570DDD2B47194900428C14 /* XCRemoteSwiftPackageReference "q20kshare" */,
+				88570DE02B47196600428C14 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
 			productRefGroup = 88570DCB2B47185600428C14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -303,6 +315,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		88570DDD2B47194900428C14 /* XCRemoteSwiftPackageReference "q20kshare" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/billdonner/q20kshare";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.12;
+			};
+		};
+		88570DE02B47196600428C14 /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		88570DDE2B47194900428C14 /* q20kshare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88570DDD2B47194900428C14 /* XCRemoteSwiftPackageReference "q20kshare" */;
+			productName = q20kshare;
+		};
+		88570DE12B47196600428C14 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88570DE02B47196600428C14 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 88570DC22B47185600428C14 /* Project object */;
 }

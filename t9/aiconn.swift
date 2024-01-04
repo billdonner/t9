@@ -10,6 +10,8 @@ import Foundation
 func callOpenAI(APIKey: String, 
                 decoder:@escaping DecoderFunc,
                 model:String,
+                timeout:TimeInterval,
+                maxtokens:Int,
                 systemMessage: String,
                 userMessage: String) async throws {
   let starttime = Date()
@@ -17,7 +19,7 @@ func callOpenAI(APIKey: String,
   let headers = ["Authorization": "Bearer \(APIKey)","Content-Type":"application/json"]
   let parameters = [
     "model":model,
-    "max_tokens": 4000,
+    "max_tokens": maxtokens,
     "temperature": 1,
     "messages": [
       ["role": "system", "content": systemMessage],
@@ -31,7 +33,7 @@ func callOpenAI(APIKey: String,
   request.httpMethod = "POST"
   request.allHTTPHeaderFields = headers
   request.httpBody = jsonData
-  request.timeoutInterval = 120
+  request.timeoutInterval = timeout
   
   let (data, _) = try await URLSession.shared.data(for:request)
   
