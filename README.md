@@ -1,6 +1,6 @@
 #  T9 - interact with the AI
 
-version  0.5.0
+version  0.5.1
 
 replaces Pumper and LieDetector
 

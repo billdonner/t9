@@ -92,6 +92,8 @@ struct T9: ParsableCommand   {
   mutating func process_cli() throws {
     // move some of these struct local things for argument parser into global variables!!
     glooper = looper 
+    gtimeout = Double(timeout)
+    gmaxtokens = maxtokens
     gpumptemplate = pumpedfile
     grepairtemplate = repairedfile
     gverbose = verbose

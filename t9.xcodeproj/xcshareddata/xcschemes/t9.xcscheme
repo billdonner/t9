@@ -113,18 +113,18 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-h"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--timeout  240"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--timeout 120"
+            argument = "--maxtokens 8000"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--maxtokens 4000"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--loop"
+            argument = "--looper"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
