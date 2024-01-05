@@ -35,6 +35,7 @@ func callOpenAI(APIKey: String,
   request.httpBody = jsonData
   request.timeoutInterval = timeout
   
+  var s = ""
   let (data, _) = try await URLSession.shared.data(for:request)
   
   let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
@@ -49,10 +50,15 @@ func callOpenAI(APIKey: String,
     throw T9Errors.badResponseFromAI
   }
   do {
-    try decoder(content,starttime,!firsttime)
+    // if content is not surrounded by adding them
+    s = content
+    if !content.hasPrefix("[") {
+      s = "[" + s + "]"
+    }
+      try decoder(s,starttime,!firsttime)
   } catch {
     print("*** Error could not decode response from AI: \(error)")
-    print(content)
+    print(s)
     throw T9Errors.badResponseFromAI
   }
 }

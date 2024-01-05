@@ -9,7 +9,7 @@ import Foundation
 import q20kshare
 import ArgumentParser
 
-let t9_version = "0.5.1"
+let t9_version = "0.5.2"
 
 public enum T9Errors: Error {
   case commandLineError
