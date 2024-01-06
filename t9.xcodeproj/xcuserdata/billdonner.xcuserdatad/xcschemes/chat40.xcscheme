@@ -88,28 +88,28 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--pumpedfile /users/fs/p/pumped.json"
+            argument = "--pumpedfile /users/fs/db/v40/pumped.json"
+            isEnabled = "NO">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "--repairedfile /users/fs/db/v40/repaired.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--repairedfile /users/fs/r/repaired.json"
+            argument = "--validatedfile /users/fs/db/v40/validated.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--validatedfile /users/fs/validated.json"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "--revalidatedfile /users/fs/revalidated.json"
+            argument = "--revalidatedfile /users/fs/db/v40/revalidated.json"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--model gpt-3.5-turbo-16k"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--model gpt-4"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-h"
@@ -120,12 +120,12 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--maxtokens 8000"
+            argument = "--maxtokens 4000"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--looper"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

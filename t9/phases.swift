@@ -41,7 +41,7 @@ enum Phases:Int {
   
   static func perform(_ performPhases:[Bool],jobno:String,msg:String) async throws {
     do {
-      print("\n=========== Job \(jobno) \(gmodel) ============")
+      print("\n=== Job \(jobno) \(gmodel),tmo=\(Int(gtimeout)),maxt=\(gmaxtokens),p=\(totalPumped),r=\(totalRepaired) ===")
       if performPhases[0] {
         try await pumpPhase(msg)}
       else {print ("Skipping pumpPhase")}
@@ -56,8 +56,7 @@ enum Phases:Int {
       else {print ("Skipping revalidationPhase")}
     }
     catch {
-      print("\n=========== Cancelling Job \(jobno) ============")
-      print(error)
+      print("\n===******** Cancelling Job \(jobno) : \(error) ***********===")
     }
   }
 }
@@ -101,7 +100,6 @@ enum Phases:Int {
         for z in zz {
           let data = try encoder.encode(z)
           if let str1 = String(data:data,encoding: .utf8)  {
-            //let str2 = lowercasedJSONFieldNames(jsonString: str1) ?? "FAIL"
             let filespec = fpc+lpc+"_"+z.topic+"_"+z.id+"."+rpc
             if  let repairedhandle = try prep9(filespec,initial:"") {
               repairedhandle.write(str1.data(using: .utf8)!)
@@ -135,7 +133,6 @@ enum Phases:Int {
         for z in zzz {
           let data = try encoder.encode(z)
           if let str1 = String(data:data,encoding: .utf8)  {
-            //let str2 = lowercasedJSONFieldNames(jsonString: str1) ?? "FAIL"
             let filespec = fpc+lpc+"_"+z.topic+"_"+z.id+"."+rpc
             if  let pumpHandle = try prep9(filespec,initial:"") {
               pumpHandle.write(str1.data(using: .utf8)!)

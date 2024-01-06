@@ -53,7 +53,10 @@ func callOpenAI(APIKey: String,
     // if content is not surrounded by adding them
     s = content
     if !content.hasPrefix("[") {
-      s = "[" + s + "]"
+      s = "[" + s
+    }
+    if !content.hasSuffix("]") {
+      s += "]"
     }
       try decoder(s,starttime,!firsttime)
   } catch {
