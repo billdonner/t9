@@ -62,12 +62,23 @@ func callOpenAI(APIKey: String,
     throw T9Errors.badResponseFromAI
   }
   do {
-    // if content is not surrounded by adding them
-    s = content
-    if !content.hasPrefix("[") {
+   var scontent = content.trimmingCharacters(in: .whitespacesAndNewlines)
+    //if content has bullshit strip it
+    if scontent.hasPrefix( "```json") {
+      scontent.removeFirst(7)
+    }
+    //```]
+    if scontent.hasSuffix( "```") {
+      scontent.removeLast(3)
+    }
+    scontent = scontent.trimmingCharacters(in: .whitespacesAndNewlines)
+    
+    // if content is not surrounded by brackets now adding them
+    s = scontent
+    if !scontent.hasPrefix("[") {
       s = "[" + s
     }
-    if !content.hasSuffix("]") {
+    if !scontent.hasSuffix("]") {
       s += "]"
     }
       try decoder(s,starttime,usage)

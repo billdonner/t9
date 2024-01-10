@@ -163,8 +163,10 @@ repeat {
   if let validatedHandle = validatedHandle { validatedHandle.closeFile()}
   if let revalidatedHandle = revalidatedHandle { revalidatedHandle.closeFile()}
 } while glooper
-          
-          
+
+let succrate:Int = totalJobs == 0 ? 100 : succesfullJobs*100/totalJobs
+let totalCostSoFar = computeTotalCost(completionTokenCount: completionTokens, promptTokenCount: promptTokens, model: gmodel)
+let d = displayAsDollarAmount(totalCostSoFar)
 let elapsed = String(format:"%4.2f",Date().timeIntervalSince(startTime))
-print("\nExiting, pumped \(totalPumped) and repaired \(totalRepaired) using \(gmodel); all work completed to the best of our abilities in \(elapsed) secs.")
+print("\nExiting, pumped \(totalPumped) and repaired \(totalRepaired) using \(gmodel); ct=\(completionTokens) pt=\(promptTokens) cost=\(d);\nAll work completed to the best of our abilities with success rate \(succrate)% in \(elapsed) secs.")
 
