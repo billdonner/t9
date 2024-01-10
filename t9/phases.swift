@@ -7,7 +7,17 @@
 
 import Foundation
 import q20kshare
-
+func displayAsDollarAmount(_ value: Double) -> String {
+    let numberFormatter = NumberFormatter()
+    numberFormatter.numberStyle = .currency
+    numberFormatter.currencySymbol = "$"
+    
+    if let formattedString = numberFormatter.string(from: NSNumber(value: value)) {
+        return formattedString
+    } else {
+        return ""
+    }
+}
 
 func pumpPhase(_ userMessage:String) async  throws{
   print ("pumping...\(userMessage)")
@@ -41,36 +51,44 @@ enum Phases:Int {
   
   static func perform(_ performPhases:[Bool],jobno:String,msg:String) async throws {
     do {
-      print("\n=== Job \(jobno) \(gmodel),tmo=\(Int(gtimeout)),maxt=\(gmaxtokens),p=\(totalPumped),r=\(totalRepaired) ===")
+      let succrate:Int = totalJobs == 0 ? 100 : succesfullJobs*100/totalJobs
+      totalJobs += 1
+      let totalCostSoFar = computeTotalCost(completionTokenCount: completionTokens, promptTokenCount: promptTokens, model: gmodel)
+      let d = displayAsDollarAmount(totalCostSoFar)
+      print("\n=== \(String(format:"%4.2f",Date().timeIntervalSince(startTime))) Job(\(totalJobs)) \(jobno) \(gmodel),tmo=\(Int(gtimeout)),maxt=\(gmaxtokens),p=\(totalPumped),r=\(totalRepaired),ct=\(completionTokens),pt=\(promptTokens),succ=\(succrate)%, \(d) ===")
       if performPhases[0] {
         try await pumpPhase(msg)}
       else {print ("Skipping pumpPhase")}
       if performPhases[1] {
         try await validationPhase()}
-      else {print ("Skipping validationPhase")}
+      else {
+       // print ("Skipping validationPhase")
+      }
       if performPhases[2] {
         try await repairPhase(msg)}
       else {print ("Skipping repairPhase")}
       if performPhases[3] {
         try await revalidationPhase()}
-      else {print ("Skipping revalidationPhase")}
+      else {//print ("Skipping revalidationPhase")
+      }
+      succesfullJobs += 1
     }
     catch {
-      print("\n===******** Cancelling Job \(jobno) : \(error) ***********===")
+      print("\n===******** Cancelling Job \(jobno) : \(error) ***********===\n")
     }
   }
 }
   
   // Function to call the OpenAI API
   
-  fileprivate func decodeValidationResponse(_ content: String,_ started:Date, _ needscomma:Bool) throws {
+fileprivate func decodeValidationResponse(_ content: String,_ started:Date, _ usage:Usage?) throws {
     let elapsed = String(format:"%4.2f",Date().timeIntervalSince(started))
     print(">AI validation response \(content.count) bytes in \(elapsed) secs \n\(content)")
     if let validatedHandle = validatedHandle {
       validatedHandle.write(content.data(using:.utf8)!)
     }
   }
-  fileprivate func decodeReValidationResponse(_ content: String,_ started:Date, _ needscomma:Bool) throws {
+fileprivate func decodeReValidationResponse(_ content: String,_ started:Date, _ usage:Usage?) throws {
     let elapsed = String(format:"%4.2f",Date().timeIntervalSince(started))
     print(">AI revalidation response \(content.count) bytes in \(elapsed) secs \n\(content)")
     if let revalidatedHandle = revalidatedHandle {
@@ -84,7 +102,10 @@ enum Phases:Int {
     let frontPath = filePath.dropLast(lastPathComponent.count + pathExtension.count+1)
     return (String(frontPath),lastPathComponent, pathExtension)
   }
-  fileprivate func decodeQuestionsArray(_ content: String,_ started:Date, _ needscomma:Bool) throws {
+fileprivate func decodeQuestionsArray(_ content: String,_ started:Date,_  usage:Usage?) throws {
+  totalTokens += usage?.total_tokens ?? 0
+  completionTokens += usage?.completion_tokens ?? 0
+  promptTokens += usage?.prompt_tokens ?? 0
     if gverbose {print("\(content)")}
     let lowercontent  = rewriteJSON( content) ?? "FAIL"
     if let data = lowercontent.data(using:.utf8) {
@@ -101,10 +122,13 @@ enum Phases:Int {
           let data = try encoder.encode(z)
           if let str1 = String(data:data,encoding: .utf8)  {
             let filespec = fpc+lpc+"_"+z.topic+"_"+z.id+"."+rpc
+            
+            // global stats
+            totalRepaired += 1
+       
             if  let repairedhandle = try prep9(filespec,initial:"") {
               repairedhandle.write(str1.data(using: .utf8)!)
               repairedhandle.closeFile()
-              totalRepaired += 1
               print("   \(z.question)")
             }
           }
@@ -113,7 +137,11 @@ enum Phases:Int {
     }
   }
   
-  fileprivate func decodePumpingArray(_ content: String,_ started:Date, _ needscomma:Bool) throws {
+fileprivate func decodePumpingArray(_ content: String,_ started:Date, _ usage:Usage?) throws {
+  
+  totalTokens += usage?.total_tokens ?? 0
+  completionTokens += usage?.completion_tokens ?? 0
+  promptTokens += usage?.prompt_tokens ?? 0
     if gverbose {print("\(content)")}
     let lowercontent  = rewriteJSON(content) ?? "FAIL"
     if let data = lowercontent.data(using:.utf8) {
@@ -134,10 +162,11 @@ enum Phases:Int {
           let data = try encoder.encode(z)
           if let str1 = String(data:data,encoding: .utf8)  {
             let filespec = fpc+lpc+"_"+z.topic+"_"+z.id+"."+rpc
+            // global stats
+            totalPumped += 1
             if  let pumpHandle = try prep9(filespec,initial:"") {
               pumpHandle.write(str1.data(using: .utf8)!)
               pumpHandle.closeFile()
-              totalPumped += 1
               print("   \(z.question)")
             }
           }
@@ -148,7 +177,7 @@ enum Phases:Int {
   
   
   
-  typealias DecoderFunc =  (String,Date,Bool) throws -> Void
+  typealias DecoderFunc =  (String,Date,Usage?) throws -> Void
   
   func callAI(msg1:String,msg2:String,
               decoder:@escaping DecoderFunc) async throws {

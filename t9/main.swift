@@ -9,7 +9,7 @@ import Foundation
 import q20kshare
 import ArgumentParser
 
-let t9_version = "0.5.4"
+let t9_version = "0.5.5"
 
 public enum T9Errors: Error {
   case commandLineError
@@ -84,6 +84,14 @@ var phasescount = 4
 
 var totalPumped = 0
 var totalRepaired = 0
+var totalTokens = 0
+var promptTokens = 0
+var completionTokens = 0
+var totalJobs = 0
+var succesfullJobs = 0
+
+
+
 var glooper = false
 var gtimeout:TimeInterval = 0
 var gmaxtokens = 0

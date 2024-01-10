@@ -104,7 +104,7 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--model gpt-3.5-turbo-16k"
+            argument = "--model gpt-3.5-turbo-1106"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

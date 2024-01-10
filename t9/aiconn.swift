@@ -26,6 +26,9 @@ func callOpenAI(APIKey: String,
       ["role": "user", "content": userMessage]
     ]
   ] as [String : Any]
+  if model.hasPrefix("gpt-4-1106-preview") {
+  //  parameters[ "response_format" ] = [ "type": "json_object"]
+  }
   
   let jsonData = try JSONSerialization.data(withJSONObject: parameters)
   
@@ -37,6 +40,15 @@ func callOpenAI(APIKey: String,
   
   var s = ""
   let (data, _) = try await URLSession.shared.data(for:request)
+//  let ss = String(data:data,encoding: .utf8) ?? ""
+//  print(ss)
+  
+  /**
+   first process metrics and usage if we can
+   */ 
+   let usage = get_usage_metrics(data)
+ 
+//  now on to errors and content
   
   let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
   guard let choices = json?["choices"] as? [[String: Any]],  
@@ -58,7 +70,7 @@ func callOpenAI(APIKey: String,
     if !content.hasSuffix("]") {
       s += "]"
     }
-      try decoder(s,starttime,!firsttime)
+      try decoder(s,starttime,usage)
   } catch {
     print("*** Error could not decode response from AI: \(error)")
     print(s)

@@ -13,7 +13,7 @@ import ArgumentParser
 
 func prep9(_ x:String, initial:String) throws  -> FileHandle? {
  if (FileManager.default.createFile(atPath: x, contents: nil, attributes: nil)) {
-   print(">Created \(x)")
+//   print(">Created \(x)")
  } else {
    print("\(x) not created."); throw PumpingErrors.badOutputURL
  }
@@ -112,10 +112,7 @@ struct T9: ParsableCommand   {
     let userMessage = try String(data:Data(contentsOf:usr),encoding: .utf8)
     guard let userMessage = userMessage else {throw T9Errors.cantDecode(url: pumpusr)}
     usrMessage = userMessage
-    
-    
-    // validation
-    
+        // validation
     if valusr == "" {
       valusrMessage = ""
     } else {
@@ -123,8 +120,7 @@ struct T9: ParsableCommand   {
         throw T9Errors.badInputURL(url: valusr)
       }
       valusrMessage = try String(data:Data(contentsOf:valusr),encoding: .utf8) ?? ""
-    }
-    
+    } 
     if valsys == "" {
       valsysMessage = ""
     } else {
@@ -174,20 +170,11 @@ struct T9: ParsableCommand   {
       revalsysMessage = try String(data:Data(contentsOf:revalsys),encoding: .utf8) ?? ""
       skiprevalidation = false
     }
-    
-    // in T9 each returned json block is written directly to the file system so there is nothing to do until that point
- 
-//    if pumpedfile != "" {
-//        pumpHandle =  try? prep(pumpedfile,initial:"[\n")
-//    }
+
     if validatedfile != "" {
     validatedHandle = try?  prep9(validatedfile,initial:"")// "[\n")
     }
-    // output files get opened for writing incrmentally
-    
-//    if repairedfile != "" {
-//      repairHandle = try?  prep(repairedfile,initial: "[\n")
-//    }
+
     if revalidatedfile != "" {
      revalidatedHandle = try?  prep9(revalidatedfile,initial:"")// "[\n")
     }
@@ -203,8 +190,7 @@ struct T9: ParsableCommand   {
       throw T9Errors.commandLineError
     }
     showTemplates()
-    apiKey = try getAPIKey()
-    
+    apiKey = try getAPIKey() 
   }
 }
  

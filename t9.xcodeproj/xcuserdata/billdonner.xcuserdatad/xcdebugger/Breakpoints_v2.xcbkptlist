@@ -3,4 +3,118 @@
    uuid = "897D9D5E-387C-4FCD-A0FA-91D3B598552A"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "99CEB6F9-259F-4D57-A4FD-EEBCAAA0D89B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "t9/aiconn.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "callOpenAI(APIKey:decoder:model:timeout:maxtokens:systemMessage:userMessage:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "99CEB6F9-259F-4D57-A4FD-EEBCAAA0D89B - 98378df33d9173b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for t9.callOpenAI(APIKey: Swift.String, decoder: (Swift.String, Foundation.Date, Swift.Bool) throws -&gt; (), model: Swift.String, timeout: Swift.Double, maxtokens: Swift.Int, systemMessage: Swift.String, userMessage: Swift.String) async throws -&gt; ()"
+                  moduleName = "t9"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/t9/t9/aiconn.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "2072">
+               </Location>
+               <Location
+                  uuid = "99CEB6F9-259F-4D57-A4FD-EEBCAAA0D89B - 98378df33d9173b0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for t9.callOpenAI(APIKey: Swift.String, decoder: (Swift.String, Foundation.Date, Swift.Bool) throws -&gt; (), model: Swift.String, timeout: Swift.Double, maxtokens: Swift.Int, systemMessage: Swift.String, userMessage: Swift.String) async throws -&gt; ()"
+                  moduleName = "t9"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/t9/t9/aiconn.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "59"
+                  endingLineNumber = "59"
+                  offsetFromSymbolStart = "1012">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5BDB5800-BBFA-4573-A4EE-753B5504F624"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "t9/aiconn.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "callOpenAI(APIKey:decoder:model:timeout:maxtokens:systemMessage:userMessage:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "5BDB5800-BBFA-4573-A4EE-753B5504F624 - dd11bff6abc82b71"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for t9.callOpenAI(APIKey: Swift.String, decoder: (Swift.String, Foundation.Date, Swift.Bool) throws -&gt; (), model: Swift.String, timeout: Swift.Double, maxtokens: Swift.Int, systemMessage: Swift.String, userMessage: Swift.String) async throws -&gt; ()"
+                  moduleName = "t9"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/t9/t9/aiconn.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "1836">
+               </Location>
+               <Location
+                  uuid = "5BDB5800-BBFA-4573-A4EE-753B5504F624 - 524618aefa940a8c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for t9.callOpenAI(APIKey: Swift.String, decoder: (Swift.String, Foundation.Date, Swift.Optional&lt;t9.Usage&gt;) throws -&gt; (), model: Swift.String, timeout: Swift.Double, maxtokens: Swift.Int, systemMessage: Swift.String, userMessage: Swift.String) async throws -&gt; ()"
+                  moduleName = "t9"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/billdonner/Documents/t9/t9/aiconn.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "30"
+                  endingLineNumber = "30"
+                  offsetFromSymbolStart = "1836">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E337C14D-1D13-4B94-81F9-E38B7518EA7F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "t9/metrics.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "computeTotalCost(completionTokenCount:promptTokenCount:model:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>
