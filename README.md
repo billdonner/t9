@@ -1,6 +1,6 @@
 #  T9 - interact with the AI
 
-version  0.5.5 updated for carol on jan 11 at 1015
+version  0.5.5 updated for carol on jan 11 at 1147
 
 replaces Pumper and LieDetector
 

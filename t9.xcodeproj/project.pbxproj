@@ -37,6 +37,7 @@
 		88570DDC2B4718B700428C14 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		887A0A602B49B6E40019DA93 /* sample.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = sample.csv; sourceTree = "<group>"; };
 		887A0A7C2B4DD3C00019DA93 /* metrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = metrics.swift; sourceTree = "<group>"; };
+		887A0A7E2B507B970019DA93 /* File */ = {isa = PBXFileReference; lastKnownFileType = text; path = File; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				88570DCD2B47185600428C14 /* main.swift */,
+				887A0A7E2B507B970019DA93 /* File */,
 				88570DD62B47189F00428C14 /* phases.swift */,
 				887A0A602B49B6E40019DA93 /* sample.csv */,
 				88570DD82B4718A600428C14 /* aiconn.swift */,

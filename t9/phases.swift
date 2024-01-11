@@ -7,6 +7,14 @@
 
 import Foundation
 import q20kshare
+
+  func showStats(_ jobno: String) {
+  let succrate:Int = totalJobs == 0 ? 100 : succesfullJobs*100/totalJobs
+  let totalCostSoFar = computeTotalCost(completionTokenCount: completionTokens, promptTokenCount: promptTokens, model: gmodel)
+  let d = displayAsDollarAmount(totalCostSoFar)
+  print("\n=== \(String(format:"%4.2f",Date().timeIntervalSince(startTime))) Job(\(totalJobs)) \(jobno) \(gmodel),tmo=\(Int(gtimeout)),maxt=\(gmaxtokens),p=\(totalPumped),r=\(totalRepaired),ct=\(completionTokens),pt=\(promptTokens),succ=\(succrate)%, \(d) ===")
+}
+
 func displayAsDollarAmount(_ value: Double) -> String {
     let numberFormatter = NumberFormatter()
     numberFormatter.numberStyle = .currency
@@ -49,13 +57,11 @@ enum Phases:Int {
   case repairing
   case revalidating
   
+
   static func perform(_ performPhases:[Bool],jobno:String,msg:String) async throws {
     do {
-      let succrate:Int = totalJobs == 0 ? 100 : succesfullJobs*100/totalJobs
+      showStats(jobno)
       totalJobs += 1
-      let totalCostSoFar = computeTotalCost(completionTokenCount: completionTokens, promptTokenCount: promptTokens, model: gmodel)
-      let d = displayAsDollarAmount(totalCostSoFar)
-      print("\n=== \(String(format:"%4.2f",Date().timeIntervalSince(startTime))) Job(\(totalJobs)) \(jobno) \(gmodel),tmo=\(Int(gtimeout)),maxt=\(gmaxtokens),p=\(totalPumped),r=\(totalRepaired),ct=\(completionTokens),pt=\(promptTokens),succ=\(succrate)%, \(d) ===")
       if performPhases[0] {
         try await pumpPhase(msg)}
       else {print ("Skipping pumpPhase")}
