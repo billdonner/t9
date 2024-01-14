@@ -1,8 +1,6 @@
 #  T9 - interact with the AI
 
-version  0.5.5 updated for carol on jan 11 at 1147
-
-replaces Pumper and LieDetector
+version  0.5.6 - uses new q20kshare
 
 ## AI Mining Process
 

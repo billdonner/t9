@@ -9,7 +9,7 @@ import Foundation
 import q20kshare
 import ArgumentParser
 
-let t9_version = "0.5.5"
+let t9_version = "0.5.6"
 
 public enum T9Errors: Error {
   case commandLineError
@@ -40,17 +40,10 @@ struct QuestionsModelEntry: Codable {
                      answers: from.answers,
                      correct: from.correct,
                      explanation: from.explanation,
-                     id:UUID().uuidString,
-                     source:gmodel)
+                    id:UUID().uuidString, date: Date() ,
+                     aisource:gmodel)
   }
 }
-
-
-
-func makeChallenge(from:QuestionsModelEntry)  -> Challenge {
-  Challenge(question: from.question, topic: from.topic, hint: from.hint, answers: from.answers, correct: from.correct,explanation: from.explanation)
-}
-
 
 var qmeBuf:String = ""
 
@@ -109,7 +102,6 @@ func showTemplates() {
 
 func runAICycle (_ userMessage:String,jobno:String) async throws{
   var phases:[Bool] = [true]// [altpump.isEmpty]
-  
   phases += [!skipvalidation]
   phases += [!skiprepair]
   phases += [!skiprevalidation]
@@ -118,7 +110,6 @@ func runAICycle (_ userMessage:String,jobno:String) async throws{
 
 
 func bigLoop () {
-  
   let tmsgs = usrMessage.components(separatedBy: "*****")
   let umsgs = tmsgs.compactMap{$0.trimmingCharacters(in: .whitespacesAndNewlines)}
   phasescount = umsgs.count
@@ -139,9 +130,7 @@ func bigLoop () {
 }
 
 
-
-//main starts here
-//test1()
+ 
 let startTime = Date()
 print(">T9 Command Line: \(CommandLine.arguments)")
 repeat {
@@ -159,7 +148,6 @@ repeat {
       even = !even
     }
   }
-  
   if let validatedHandle = validatedHandle { validatedHandle.closeFile()}
   if let revalidatedHandle = revalidatedHandle { revalidatedHandle.closeFile()}
 } while glooper
