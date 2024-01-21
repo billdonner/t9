@@ -1,5 +1,7 @@
 #  T9 - interact with the AI
 
+version  0.5.7 - addtimestamps to logs, make received dates unique
+
 version  0.5.6 - uses new q20kshare
 
 ## AI Mining Process

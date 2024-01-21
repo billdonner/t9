@@ -40,11 +40,20 @@ struct QuestionsModelEntry: Codable {
                      answers: from.answers,
                      correct: from.correct,
                      explanation: from.explanation,
-                    id:UUID().uuidString, date: Date() ,
+                     id:UUID().uuidString, 
+                     date: uniqueDate() ,
                      aisource:gmodel)
   }
 }
-
+func uniqueDate() -> Date { 
+  var x = Date()
+  if lastDate != nil , lastDate == x {
+    x += 9 // make these unique even if called repeatedly
+  }
+  lastDate = x
+  return x
+}
+var lastDate:Date? = nil
 var qmeBuf:String = ""
 
 var firsttime = true
@@ -82,8 +91,6 @@ var promptTokens = 0
 var completionTokens = 0
 var totalJobs = 0
 var succesfullJobs = 0
-
-
 
 var glooper = false
 var gtimeout:TimeInterval = 0
@@ -128,8 +135,6 @@ func bigLoop () {
     }
   }
 }
-
-
  
 let startTime = Date()
 print(">T9 Command Line: \(CommandLine.arguments)")
@@ -156,4 +161,3 @@ repeat {
 showStats("FINAL")
 //print("\nExiting, pumped \(totalPumped) and repaired \(totalRepaired) using \(gmodel); ct=\(completionTokens) pt=\(promptTokens) cost=\(d);\n
 print("All work completed to the best of our abilities")
-
