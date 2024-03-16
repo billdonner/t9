@@ -88,16 +88,16 @@
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--pumpedfile /users/fs/db/v40/pumped.json"
+            argument = "--pumpedtemplate /users/fs/db/v40/pumped.json"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "--repairedfile /users/fs/db/v40/repaired.json"
+            argument = "--repairedtemplate /users/fs/db/v40/repaired.json"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--validatedfile /users/fs/db/v40/validated.json"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--revalidatedfile /users/fs/db/v40/revalidated.json"

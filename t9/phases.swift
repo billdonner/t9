@@ -124,25 +124,31 @@ fileprivate func decodeQuestionsArray(_ content: String,_ started:Date,_  usage:
       let (fpc,lpc,rpc) = getFileNameAndExtension(from: grepairtemplate)
       let encoder = JSONEncoder()
       encoder.outputFormatting = .prettyPrinted
+      var data:Data
       for z in zz {
-        let data = try encoder.encode(z)
-        if let str1 = String(data:data,encoding: .utf8)  {
-          let filespec = fpc+lpc+"_"+z.topic+"_"+z.id+"."+rpc
-          
-          // global stats
-          totalRepaired += 1
-          
-          if  let repairedhandle = try prep9(filespec,initial:"") {
-            repairedhandle.write(str1.data(using: .utf8)!)
-            repairedhandle.closeFile()
-            print("   \(z.question)")
+//        if  z.hint != "" {
+//          if !z.hint.hasSuffix(".") { // if no period then add one
+//            print("NO PERIOD AT END OF HINT")
+//            data = try encoder.encode(Challenge(question: z.question, topic: z.topic, hint: z.hint+".", answers: z.answers, correct: z.correct, id: z.id, date: z.date, aisource: z.aisource))
+//          } else {
+            data = try encoder.encode(z)
+     //     }
+          if let str1 = String(data:data,encoding: .utf8)  {
+            let filespec = fpc+lpc+"_"+z.topic+"_"+z.id+"."+rpc
+            
+            // global stats
+            totalRepaired += 1
+            
+            if  let repairedhandle = try prep9(filespec,initial:"") {
+              repairedhandle.write(str1.data(using: .utf8)!)
+              repairedhandle.closeFile()
+              print("   \(z.question)")
+            }
           }
         }
       }
     }
   }
-}
-
 fileprivate func decodePumpingArray(_ content: String,_ started:Date, _ usage:Usage?) throws {
   
   totalTokens += usage?.total_tokens ?? 0

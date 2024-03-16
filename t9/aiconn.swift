@@ -276,3 +276,30 @@ public func pumpItUp(ctx:ChatContext,
   }
   throw PumpingErrors.reachedMaxLimit
 }
+
+//  func  prepOutputChannels(ctx:ChatContext)throws -> FileHandle? {
+//  func prep(_ x:String, initial:String) throws  -> FileHandle? {
+//    if (FileManager.default.createFile(atPath: x, contents: nil, attributes: nil)) {
+//      print(">Pumper created \(x)")
+//    } else {
+//      print("\(x) not created."); throw PumpingErrors.badOutputURL
+//    }
+//    guard let  newurl = URL(string:x)  else {
+//      print("\(x) is a bad url"); throw PumpingErrors.badOutputURL
+//    }
+//    do {
+//      let  fh = try FileHandle(forWritingTo: newurl)
+//      fh.write(initial.data(using: .utf8)!)
+//      return fh
+//    } catch {
+//      print("Cant write to \(newurl), \(error)"); throw PumpingErrors.cantWrite
+//    }
+//  }
+//  guard  ctx.outURL.absoluteString.hasPrefix("file://") else
+//  {
+//    throw PumpingErrors.onlyLocalFilesSupported
+//  }
+//  let s = String(ctx.outURL.deletingPathExtension().absoluteString.dropFirst(7))
+//  let x = s + ".json"
+//  return  try prep(x,initial:"[")
+//}

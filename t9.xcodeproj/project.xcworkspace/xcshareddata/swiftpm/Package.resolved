@@ -1,12 +1,13 @@
 {
+  "originHash" : "c17f68077fc6ffb53c0516c6d504ac9f4b54c04e564ded47fae49abb4cceb501",
   "pins" : [
     {
       "identity" : "q20kshare",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/billdonner/q20kshare",
       "state" : {
-        "revision" : "38b8c79930887c4ec57c17ddf296f1bf5b62844e",
-        "version" : "0.5.19"
+        "revision" : "59aa8188f2d3aa084812937c940812b0e8921380",
+        "version" : "0.5.25"
       }
     },
     {
@@ -19,5 +20,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

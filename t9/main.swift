@@ -1,6 +1,6 @@
 //
 //  main.swift
-//  t7
+//  t9
 //
 //  Created by bill donner on 12/9/23.
 //
@@ -9,7 +9,7 @@ import Foundation
 import q20kshare
 import ArgumentParser
 
-let t9_version = "0.5.6"
+let t9_version = "0.5.10"
 
 public enum T9Errors: Error {
   case commandLineError

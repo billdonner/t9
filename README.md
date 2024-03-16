@@ -1,5 +1,9 @@
 #  T9 - interact with the AI
 
+version 0.5.10 - changed repairedfile and pumpedfile to repairedtemplate and pumpedtemplate, removed validatedfile and revalidatedfile args
+
+version  0.5.9 - supports new notes field in Challenge struct for human editing, ect
+
 version  0.5.7 - addtimestamps to logs, make received dates unique
 
 version  0.5.6 - uses new q20kshare

@@ -33,7 +33,7 @@ struct T9: ParsableCommand   {
   
   static var configuration = CommandConfiguration(
     abstract: "Chat With AI To Generate Data for Q20K (IOS) App",
-    discussion: "Step 1 - ask the AI to generate question blocks\nStep 2 - ask the AI to identify problems in generated data\nStep 3 - ask the AI to repair the data\nStep 4 - ask the AI to again identify problems in generated data",
+    discussion: "Step 1 - ask the AI to generate question blocks a\nStep 2 - ask the AI to repair the data\n\n\n The pumpedtemplate and repairedtemple are full file paths which generate an output file path that  will be modified as each file is processed",
     version: t9_version )
   
   @Argument(help: "pumper system template URL")
@@ -63,17 +63,17 @@ struct T9: ParsableCommand   {
   @Option( help:"alternate pumper input URL, default is \"\"")
   var altpump: String = ""
   
-  @Option( help:"pumpedoutput directory of json files")
-  var pumpedfile: String = ""
+  @Option( help:"pumpedoutput template for output  json files")
+  var pumpedtemplate: String = ""
   
-  @Option( help:"repaired directory of json files")
-  var repairedfile: String = ""
+  @Option( help:"repaired template for output json files")
+  var repairedtemplate: String = ""
   
-  @Option( help:"validated json stream file")
-  var validatedfile: String = ""
-  
-  @Option( help:"revalidated json stream file")
-  var revalidatedfile: String = ""
+//  @Option( help:"validated json stream file")
+//  var validatedfile: String = ""
+//  
+//  @Option( help:"revalidated json stream file")
+//  var revalidatedfile: String = ""
   
   @Option( help:"model")
   var model: String = "gpt-4"
@@ -94,8 +94,8 @@ struct T9: ParsableCommand   {
     glooper = looper 
     gtimeout = Double(timeout)
     gmaxtokens = maxtokens
-    gpumptemplate = pumpedfile
-    grepairtemplate = repairedfile
+    gpumptemplate = pumpedtemplate
+    grepairtemplate = repairedtemplate
     gverbose = verbose
     gmodel = model
     // get required template data, no defaults
@@ -171,13 +171,13 @@ struct T9: ParsableCommand   {
       skiprevalidation = false
     }
 
-    if validatedfile != "" {
-    validatedHandle = try?  prep9(validatedfile,initial:"")// "[\n")
-    }
-
-    if revalidatedfile != "" {
-     revalidatedHandle = try?  prep9(revalidatedfile,initial:"")// "[\n")
-    }
+//    if validatedfile != "" {
+//    validatedHandle = try?  prep9(validatedfile,initial:"")// "[\n")
+//    }
+//
+//    if revalidatedfile != "" {
+//     revalidatedHandle = try?  prep9(revalidatedfile,initial:"")// "[\n")
+//    }
   }
 
   
