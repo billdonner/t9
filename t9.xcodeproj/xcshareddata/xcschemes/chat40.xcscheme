@@ -77,7 +77,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--repsys file:///users/fs/repsys.txt"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--repusr file:///users/fs/repusr.txt"
@@ -89,7 +89,7 @@
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--pumpedtemplate /users/fs/db/v40/pumped.json"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "--repairedtemplate /users/fs/db/v40/repaired.json"

@@ -135,7 +135,8 @@ func bigLoop () {
     }
   }
 }
- 
+ //jsonSortTest()
+
 let startTime = Date()
 print(">T9 Command Line: \(CommandLine.arguments)")
 repeat {
@@ -161,3 +162,40 @@ repeat {
 showStats("FINAL")
 //print("\nExiting, pumped \(totalPumped) and repaired \(totalRepaired) using \(gmodel); ct=\(completionTokens) pt=\(promptTokens) cost=\(d);\n
 print("All work completed to the best of our abilities")
+
+func sortJSON(json: Any) -> Any {
+    if var dict = json as? [String: Any] {
+        var sortedDict = [String: Any]()
+        for (key, value) in dict.sorted(by: { $0.key < $1.key }) {
+            sortedDict[key] = sortJSON(json: value)
+        }
+        return sortedDict
+    } else if var array = json as? [Any] {
+        for (index, value) in array.enumerated() {
+            array[index] = sortJSON(json: value)
+        }
+        return array
+    } else {
+        return json
+    }
+}
+
+func jsonSortTest() {
+  // Sample usage
+  let json: [String: Any] = [
+    "b": "value",
+    "a": 123,
+    "c": [
+      "z": "nestedValue",
+      "x": 456,
+      "y": ["hello", "world"]
+    ]
+  ]
+  
+  if let sortedJSON = sortJSON(json: json) as? [String: Any] {
+    if let jsonData = try? JSONSerialization.data(withJSONObject: sortedJSON, options: [.prettyPrinted]),
+       let jsonString = String(data: jsonData, encoding: .utf8) {
+      print(jsonString)
+    }
+  }
+}

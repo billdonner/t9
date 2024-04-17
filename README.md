@@ -1,5 +1,8 @@
 #  T9 - interact with the AI
 
+version 0.5.11 - when skipping repair phase write files to filenames like "repaired..." instead of "pumped..."
+                 also fixed issues at end of run where it was asking chatgpt for too much
+
 version 0.5.10 - changed repairedfile and pumpedfile to repairedtemplate and pumpedtemplate, removed validatedfile and revalidatedfile args
 
 version  0.5.9 - supports new notes field in Challenge struct for human editing, ect

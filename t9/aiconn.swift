@@ -38,9 +38,9 @@ func callOpenAI(APIKey: String,
       ["role": "user", "content": userMessage]
     ]
   ] as [String : Any]
-  if model.hasPrefix("gpt-4-1106-preview") {
-  //  parameters[ "response_format" ] = [ "type": "json_object"]
-  }
+//  if model.hasPrefix("gpt-4-1106-preview") {
+//  //  parameters[ "response_format" ] = [ "type": "json_object"]
+//  }
   
   let jsonData = try JSONSerialization.data(withJSONObject: parameters)
   

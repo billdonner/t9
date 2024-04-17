@@ -39,7 +39,7 @@ func validationPhase() async  throws {
                    msg2:qmeBuf,
                    decoder:decodeValidationResponse )
 }
-func repairPhase(_ userMessage:String) async throws{
+func repairPhase() async throws{
   print("repairing... ")
   try await callAI(msg1:repsysMessage,msg2:qmeBuf,
                    decoder:decodeQuestionsArray )
@@ -60,24 +60,27 @@ enum Phases:Int {
   
   static func perform(_ performPhases:[Bool],jobno:String,msg:String) async throws {
     do {
-      showStats(jobno)
-      totalJobs += 1
-      if performPhases[0] {
-        try await pumpPhase(msg)}
-      else {print ("Skipping pumpPhase")}
-      if performPhases[1] {
-        try await validationPhase()}
-      else {
-        // print ("Skipping validationPhase")
+      let message = msg.trimmingCharacters(in: .whitespacesAndNewlines)
+      if message != "" {
+          showStats(jobno)
+        totalJobs += 1
+        if performPhases[0] {
+          try await pumpPhase(msg)}
+        else {print ("Skipping pumpPhase")}
+        if performPhases[1] {
+          try await validationPhase()}
+        else {
+          // print ("Skipping validationPhase")
+        }
+        if performPhases[2] {
+          try await repairPhase()}
+        else {print ("Skipping repairPhase")}
+        if performPhases[3] {
+          try await revalidationPhase()}
+        else {//print ("Skipping revalidationPhase")
+        }
+        succesfullJobs += 1
       }
-      if performPhases[2] {
-        try await repairPhase(msg)}
-      else {print ("Skipping repairPhase")}
-      if performPhases[3] {
-        try await revalidationPhase()}
-      else {//print ("Skipping revalidationPhase")
-      }
-      succesfullJobs += 1
     }
     catch {
       print("\n===******** Cancelling Job \(jobno) : \(error) ***********===\n")
@@ -167,7 +170,8 @@ fileprivate func decodePumpingArray(_ content: String,_ started:Date, _ usage:Us
     qmeBuf = str // stash as string
     //T9 - write each challenge separetly to the file systwm
     if gpumptemplate != "" {
-      let (fpc,lpc,rpc) = getFileNameAndExtension(from: gpumptemplate)
+      let (fpc,lpc,rpc) = getFileNameAndExtension(from: skiprepair ? grepairtemplate : gpumptemplate)
+  
       let encoder = JSONEncoder()
       encoder.outputFormatting = .prettyPrinted
       for z in zzz {
